@@ -1,0 +1,39 @@
+plugins {
+	id "com.jfrog.bintray" version "1.7"
+}
+
+group 'no.fint.relation'
+version '0.0.12-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+	baseName = "fint-relation-model"
+	version = version
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.projectlombok:lombok:1.16.10')
+	compile('com.fasterxml.jackson.core:jackson-databind:2.8.4')
+
+	testCompile('org.spockframework:spock-core:1.1-groovy-2.4-rc-3')
+}
+
+javadoc {
+	source = sourceSets.main.allJava
+	classpath = configurations.compile
+	options.windowTitle = "FINT Relation Model"
+}
+
+if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
+	apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.0/bintray.gradle'
+}
