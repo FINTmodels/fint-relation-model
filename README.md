@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.4')
+compile('no.fint:fint-relation-model:0.0.5')
 ```
 
 ## Usage
@@ -62,4 +62,9 @@ new RelationType.Builder()
         .main(Main.class, "systemid")
         .related(Related.class, "systemid")
         .buildTypeString();
+```
+
+**Get relation types for class**
+```java
+RelationUtil.getRelationTypes(Arbeidsforhold.class);
 ```
