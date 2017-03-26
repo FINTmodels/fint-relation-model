@@ -2,6 +2,7 @@ package no.fint.model.relation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Relation type format urn:<namespace>:<mainClass>:<relationName>:<mainId>:<relatedId>
@@ -9,6 +10,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class RelationType {
+    @Setter
+    public static String defaultNamespace = "";
+
     private String namespace;
     private String mainClass;
     private String relationName;
@@ -58,7 +62,7 @@ public class RelationType {
     }
 
     public static class Builder {
-        private String namespace;
+        private String namespace = defaultNamespace;
         private String mainClass;
         private String relationName;
         private String mainId;

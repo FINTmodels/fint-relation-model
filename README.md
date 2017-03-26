@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.3')
+compile('no.fint:fint-relation-model:0.0.4')
 ```
 
 ## Usage
@@ -34,6 +34,10 @@ new RelationType.Builder()
                 .build();
 ```
 
+**Set default namespace**
+```java
+RelationType.setDefaultNamespace("fint.no");
+```
 
 **Verify that the relation type is valid:**
 ```java

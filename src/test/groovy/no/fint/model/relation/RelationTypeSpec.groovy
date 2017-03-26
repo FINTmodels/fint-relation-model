@@ -70,4 +70,20 @@ class RelationTypeSpec extends Specification {
         !relationType.isValid()
     }
 
+    def "Set default namespace"() {
+        given:
+        RelationType.setDefaultNamespace('fint.no')
+
+        when:
+        def relationType = new RelationType.Builder()
+                .relationName('test')
+                .main(Relation, 'systemid')
+                .related(String, 'systemid')
+                .build()
+        RelationType.setDefaultNamespace('')
+
+        then:
+        relationType.namespace == 'fint.no'
+    }
+
 }
