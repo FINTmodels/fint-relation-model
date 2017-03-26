@@ -1,9 +1,9 @@
 plugins {
-	id "com.jfrog.bintray" version "1.7"
+    id "com.jfrog.bintray" version "1.7"
 }
 
 group 'no.fint.relation'
-version '0.0.2-SNAPSHOT'
+version '0.0.2'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
@@ -13,27 +13,32 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 jar {
-	baseName = "fint-relation-model"
-	version = version
+    baseName = "fint-relation-model"
+    version = version
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
+apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.2/dependencies.gradle'
 dependencies {
-	compile('org.projectlombok:lombok:1.16.10')
-	compile('com.fasterxml.jackson.core:jackson-databind:2.8.4')
+    compile("org.projectlombok:lombok:${lombokVersion}")
+    compile('com.fasterxml.jackson.core:jackson-databind:2.8.4')
 
-	testCompile('org.spockframework:spock-core:1.1-groovy-2.4-rc-3')
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4-rc-3')
 }
 
 javadoc {
-	source = sourceSets.main.allJava
-	classpath = configurations.compile
-	options.windowTitle = "FINT Relation Model"
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+    options.windowTitle = "FINT Relation Model"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleVersion
 }
 
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
-	apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.0/bintray.gradle'
+    apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.2/bintray.gradle'
 }
