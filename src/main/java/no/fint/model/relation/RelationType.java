@@ -32,6 +32,18 @@ public class RelationType {
         return String.format("urn:%s:%s:%s:%s:%s", namespace, mainClass, relationName, mainId, relatedId);
     }
 
+    public boolean containsClass(Class<?>... classes) {
+        String mainClass = mainId.substring(0, mainId.indexOf("."));
+        String relatedClass = relatedId.substring(0, relatedId.indexOf("."));
+        for (Class<?> clazz : classes) {
+            String name = clazz.getSimpleName().toLowerCase();
+            if (!name.equals(this.mainClass) && !name.equals(mainClass) && !name.equals(relatedClass)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isValid() {
         return isNotEmpty(namespace, mainClass, relationName, mainId, relatedId);
     }

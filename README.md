@@ -39,6 +39,10 @@ new RelationType.Builder()
 ```java
 relationType.isValid();
 ```
+Verify that the class sent as input is in either mainClass, mainId or relationId:
+```java
+relationType.containsClass(Arbeidsforhold.class);
+```
 
 **Get relation type string:**
 ```java

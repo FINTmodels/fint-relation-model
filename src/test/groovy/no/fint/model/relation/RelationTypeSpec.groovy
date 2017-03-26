@@ -43,6 +43,7 @@ class RelationTypeSpec extends Specification {
 
         then:
         relationType.isValid()
+        relationType.containsClass(Relation, String)
         relationType.namespace == 'fint.no'
         relationType.mainClass == 'relation'
         relationType.relationName == 'test'
