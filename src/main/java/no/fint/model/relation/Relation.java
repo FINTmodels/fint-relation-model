@@ -1,4 +1,4 @@
-package no.fint.relation.model;
+package no.fint.model.relation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Relation {
     private String type;
-    private String leftKey;
-    private String rightKey;
+    private String main;
+    private String related;
 }
