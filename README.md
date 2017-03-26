@@ -14,7 +14,7 @@ compile('no.fint:fint-relations:0.0.2')
 
 ## Usage
 
-To generate relation type:
+**To generate relation type:**
 ```java
 new RelationType.Builder()
         .namespace("fint.no")
@@ -24,12 +24,12 @@ new RelationType.Builder()
         .build();
 ```
 
-Verify that the relation type is valid:
+**Verify that the relation type is valid:**
 ```java
 relationType.isValid();
 ```
 
-Get relation type string:
+**Get relation type string:**
 ```java
 relationType.getType();
 ```
