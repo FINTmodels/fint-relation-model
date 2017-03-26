@@ -15,7 +15,7 @@ compile('no.fint:fint-relations:0.0.2')
 ## Usage
 
 To generate relation type:
-```
+```java
 new RelationType.Builder()
         .namespace("fint.no")
         .relationName("test")
