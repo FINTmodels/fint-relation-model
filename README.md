@@ -18,11 +18,22 @@ compile('no.fint:fint-relations:0.0.2')
 ```java
 new RelationType.Builder()
         .namespace("fint.no")
-        .relationName("test")
-        .main(Main.class, "systemid")
-        .related(Related.class, "systemid")
+        .relationName("personalressurs")
+        .main(Arbeidsforhold.class, "systemid")
+        .related(Personalressurs.class, "ansattnummer")
         .build();
 ```
+or
+```java
+new RelationType.Builder()
+                .namespace("fint.no")
+                .mainClass("arbeidsforhold")
+                .relationName("personalressurs")
+                .mainId("arbeidsforhold.systemid")
+                .relatedId("personalressurs.ansattnummer")
+                .build();
+```
+
 
 **Verify that the relation type is valid:**
 ```java
