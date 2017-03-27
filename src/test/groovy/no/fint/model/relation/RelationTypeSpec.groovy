@@ -4,6 +4,7 @@ import spock.lang.Specification
 
 class RelationTypeSpec extends Specification {
     private String relation = 'urn:fint.no:arbeidsforhold:personalressurs:arbeidsforhold.systemid:personalressurs.ansattnummer'
+    private String relationWithoutMainId = 'urn:fint.no:arbeidsforhold:personalressurs::personalressurs.ansattnummer'
 
     def "Create relation type from relation string"() {
         when:
@@ -15,6 +16,19 @@ class RelationTypeSpec extends Specification {
         relationType.mainClass == 'arbeidsforhold'
         relationType.relationName == 'personalressurs'
         relationType.mainId == 'arbeidsforhold.systemid'
+        relationType.relatedId == 'personalressurs.ansattnummer'
+    }
+
+    def "Create relation type from relation string without mainId"() {
+        when:
+        def relationType = new RelationType(relationWithoutMainId)
+
+        then:
+        relationType.isValid()
+        relationType.namespace == 'fint.no'
+        relationType.mainClass == 'arbeidsforhold'
+        relationType.relationName == 'personalressurs'
+        relationType.mainId == ''
         relationType.relatedId == 'personalressurs.ansattnummer'
     }
 
@@ -58,6 +72,19 @@ class RelationTypeSpec extends Specification {
         relationType.relationName == 'test'
         relationType.mainId == 'relation.systemid'
         relationType.relatedId == 'string.systemid'
+    }
+
+    def "Create relation type without mainId"() {
+        when:
+        def relationType = new RelationType.Builder()
+                .namespace('fint.no')
+                .relationName('test')
+                .mainClass('relation')
+                .related(String, 'systemid')
+                .build()
+
+        then:
+        relationType.isValid()
     }
 
     def "Throw IllegalArgumentException when input relation string is not a valid format"() {

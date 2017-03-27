@@ -64,7 +64,7 @@ public class RelationType {
     }
 
     public boolean isValid() {
-        return isNotEmpty(namespace, mainClass, relationName, mainId, relatedId);
+        return mainId != null && isNotEmpty(namespace, mainClass, relationName, relatedId);
     }
 
     private boolean isNotEmpty(String... values) {
@@ -80,7 +80,7 @@ public class RelationType {
         private String namespace = defaultNamespace;
         private String mainClass;
         private String relationName;
-        private String mainId;
+        private String mainId = "";
         private String relatedId;
 
         public Builder namespace(String namespace) {
