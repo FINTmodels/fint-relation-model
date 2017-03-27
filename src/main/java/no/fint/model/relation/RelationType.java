@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Optional;
+
 /**
  * Relation type format urn:<namespace>:<mainClass>:<relationName>:<mainId>:<relatedId>
  */
@@ -20,6 +22,19 @@ public class RelationType {
     private String relatedId;
 
     public RelationType(String relation) {
+        init(relation);
+    }
+
+    public RelationType(Class<?> clazz, String constant) {
+        Optional<String> constantValue = RelationUtil.getConstantValue(clazz, constant);
+        if (constantValue.isPresent()) {
+            init(constantValue.get());
+        } else {
+            throw new IllegalArgumentException(String.format("Unable to create RelationType with values from %s.%s", clazz.getSimpleName(), constant));
+        }
+    }
+
+    private void init(String relation) {
         String[] parts = relation.split(":");
         if (parts.length == 6) {
             namespace = parts[1];

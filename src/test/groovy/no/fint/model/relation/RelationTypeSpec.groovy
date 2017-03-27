@@ -18,6 +18,15 @@ class RelationTypeSpec extends Specification {
         relationType.relatedId == 'personalressurs.ansattnummer'
     }
 
+    def "Create relation type form class constant"() {
+        when:
+        def relationType = new RelationType(TestDto, 'REL_ID_TEST')
+
+        then:
+        relationType.isValid()
+        relationType.containsClass(TestDto)
+    }
+
     def "Create relation type using builder"() {
         when:
         def type = new RelationType.Builder()

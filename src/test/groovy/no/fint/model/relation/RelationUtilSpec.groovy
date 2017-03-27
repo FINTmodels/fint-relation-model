@@ -9,7 +9,17 @@ class RelationUtilSpec extends Specification {
         def types = RelationUtil.getRelationTypes(TestDto)
 
         then:
-        types.size() == 1
+        types.size() == 3
         types[0] == 'test-relation-type1'
+        types[1] == 'test-relation-type2'
+    }
+
+    def "Get constant value"() {
+        when:
+        def value = RelationUtil.getConstantValue(TestDto, 'TEST2')
+
+        then:
+        value.isPresent()
+        value.get() == 'test-relation-type2'
     }
 }

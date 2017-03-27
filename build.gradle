@@ -23,8 +23,11 @@ repositories {
 
 apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.2/dependencies.gradle'
 dependencies {
-    compile("org.projectlombok:lombok:${lombokVersion}")
     compile('com.fasterxml.jackson.core:jackson-databind:2.8.4')
+    compile("org.projectlombok:lombok:${lombokVersion}")
+    compileOnly('org.slf4j:slf4j-api:1.7.21')
+    testCompileOnly('org.slf4j:slf4j-api:1.7.21')
+    testCompileOnly('org.slf4j:slf4j-simple:1.7.21')
 
     testCompile('org.spockframework:spock-core:1.1-groovy-2.4-rc-3')
 }
