@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.6')
+compile('no.fint:fint-relation-model:0.0.7')
 ```
 
 ## Usage
