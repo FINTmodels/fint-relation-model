@@ -11,4 +11,8 @@ public class Relation {
     private String type;
     private String main;
     private String related;
+
+    public RelationType getRelationType() {
+        return new RelationType(type);
+    }
 }
