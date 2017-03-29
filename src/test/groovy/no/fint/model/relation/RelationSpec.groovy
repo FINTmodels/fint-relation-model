@@ -6,7 +6,7 @@ class RelationSpec extends Specification {
 
     def "Create relation with base url and path"() {
         when:
-        def relation = Relation.of(TestDto.Relasjonsnavn.TESTREL).fromBase('http://localhost').path('/test')
+        def relation = Relation.with(TestDto.Relasjonsnavn.TESTREL).fromBase('http://localhost').path('/test')
 
         then:
         relation.relationName == 'testrel'
@@ -15,7 +15,7 @@ class RelationSpec extends Specification {
 
     def "Create relation with link"() {
         when:
-        def relation = Relation.of(TestDto.Relasjonsnavn.TESTREL).link('http://localhost/test')
+        def relation = Relation.with(TestDto.Relasjonsnavn.TESTREL).link('http://localhost/test')
 
         then:
         relation.relationName == 'testrel'

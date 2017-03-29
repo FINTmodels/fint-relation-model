@@ -11,7 +11,7 @@ public class Relation {
     private String relationName;
     private String link;
 
-    public static <T extends Enum<T>> Relation of(T relation) {
+    public static <T extends Enum<T>> Relation with(T relation) {
         Relation rel = new Relation();
         rel.setRelationName(relation.name().toLowerCase());
         return rel;
