@@ -4,14 +4,21 @@ import spock.lang.Specification
 
 class RelationSpec extends Specification {
 
-    def "Create RelationType from Relation"() {
-        given:
-        def relation = new Relation(type: 'urn:fint.no:arbeidsforhold:personalressurs:arbeidsforhold.systemid:personalressurs.ansattnummer')
-
+    def "Create relation with base url and path"() {
         when:
-        def relationType = relation.getRelationType()
+        def relation = Relation.of(TestDto.Relasjonsnavn.TESTREL).fromBase('http://localhost').path('/test')
 
         then:
-        relationType.isValid()
+        relation.relationName == 'testrel'
+        relation.link == 'http://localhost/test'
+    }
+
+    def "Create relation with link"() {
+        when:
+        def relation = Relation.of(TestDto.Relasjonsnavn.TESTREL).link('http://localhost/test')
+
+        then:
+        relation.relationName == 'testrel'
+        relation.link == 'http://localhost/test'
     }
 }
