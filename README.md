@@ -16,9 +16,9 @@ compile('no.fint:fint-relation-model:0.0.11')
 
 **Create a new Relation**
 ```java
-Relation.with(TestDto.Relasjonsnavn.TESTREL).fromBase("http://localhost").path("/test")
+Relation.with(TestDto.Relasjonsnavn.TESTREL).fromBase("http://localhost").path("/test");
 ```
 or
 ```java
-Relation.with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test")
+Relation.with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test");
 ```
