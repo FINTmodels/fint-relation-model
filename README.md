@@ -22,3 +22,15 @@ or
 ```java
 Relation.with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test");
 ```
+
+**FintModel**
+```java
+@Data
+public class TestDto implements FintModel {
+    private List<Relation> relasjoner;
+
+    public enum Relasjonsnavn {
+        TESTREL
+    }
+}
+```

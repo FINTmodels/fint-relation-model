@@ -1,10 +1,14 @@
 package no.fint.model.relation;
 
-public class TestDto {
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class TestDto implements FintModel {
+    private List<Relation> relasjoner;
 
     public enum Relasjonsnavn {
         TESTREL
     }
-
-
 }
