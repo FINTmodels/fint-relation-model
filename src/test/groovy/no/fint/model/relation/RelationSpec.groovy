@@ -6,11 +6,14 @@ class RelationSpec extends Specification {
 
     def "Create relation with base url and path"() {
         when:
-        def relation = Relation.with(TestDto.Relasjonsnavn.TESTREL).fromBase('http://localhost').path('/test')
+        def relation = Relation.with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto2.class).path('/test')
+        def map = new HashMap<>()
+        map.put(TestDto2.class, 'http://localhost')
 
         then:
+        def url = relation.getUrl(map)
         relation.relationName == 'testrel'
-        relation.link == 'http://localhost/test'
+        url == 'http://localhost/test'
     }
 
     def "Create relation with link"() {
@@ -19,6 +22,6 @@ class RelationSpec extends Specification {
 
         then:
         relation.relationName == 'testrel'
-        relation.link == 'http://localhost/test'
+        relation.getUrl() == 'http://localhost/test'
     }
 }
