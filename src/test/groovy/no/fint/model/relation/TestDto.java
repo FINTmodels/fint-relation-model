@@ -11,4 +11,15 @@ public class TestDto implements FintModel {
     public enum Relasjonsnavn {
         TESTREL
     }
+
+    @Override
+    public void addRelasjon(Relation relasjon) {
+        relasjoner.add(relasjon);
+    }
+
+    @Override
+    public String getId() {
+        return "id";
+    }
+
 }

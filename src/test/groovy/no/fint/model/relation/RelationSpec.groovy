@@ -6,22 +6,27 @@ class RelationSpec extends Specification {
 
     def "Create relation with base url and path"() {
         when:
-        def relation = Relation.with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto2.class).path('/test')
-        def map = new HashMap<>()
-        map.put(TestDto2.class, 'http://localhost')
+        def relation = new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto2).path('/test').build()
 
         then:
-        def url = relation.getUrl(map)
         relation.relationName == 'testrel'
-        url == 'http://localhost/test'
+        relation.link == '{no.fint.model.relation.TestDto2}/test'
     }
 
     def "Create relation with link"() {
         when:
-        def relation = Relation.with(TestDto.Relasjonsnavn.TESTREL).link('http://localhost/test')
+        def relation = new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).link('http://localhost/test').build()
 
         then:
         relation.relationName == 'testrel'
-        relation.getUrl() == 'http://localhost/test'
+        relation.link == 'http://localhost/test'
+    }
+
+    def "Throw IllegalArgumentException when link / type & path is not set"() {
+        when:
+        new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).build()
+
+        then:
+        thrown(IllegalArgumentException)
     }
 }

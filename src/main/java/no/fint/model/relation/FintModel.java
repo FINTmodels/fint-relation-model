@@ -4,4 +4,8 @@ import java.util.List;
 
 public interface FintModel {
     List<Relation> getRelasjoner();
+
+    void addRelasjon(Relation relasjon);
+
+    String getId();
 }
