@@ -16,11 +16,11 @@ compile('no.fint:fint-relation-model:0.0.13')
 
 **Create a new Relation**
 ```java
-Relation.with(TestDto.Relasjonsnavn.TESTREL).fromBase("http://localhost").path("/test");
+new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class).path("/test").build();
 ```
 or
 ```java
-Relation.with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test");
+new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test").build();
 ```
 
 **FintModel**
@@ -31,6 +31,11 @@ public class TestDto implements FintModel {
 
     public enum Relasjonsnavn {
         TESTREL
+    }
+    
+    @Override
+    public void addRelasjon(Relation relasjon) {
+        relasjoner.add(relasjon);
     }
 }
 ```
