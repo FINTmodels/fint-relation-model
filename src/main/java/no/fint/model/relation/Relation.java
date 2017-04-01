@@ -1,46 +1,55 @@
 package no.fint.model.relation;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-import java.util.Map;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Relation {
+    @Getter
     private String relationName;
+    @Getter
     private String link;
-    private Class type;
-    private String path;
 
-    public static <T extends Enum<T>> Relation with(T relation) {
-        Relation rel = new Relation();
-        rel.setRelationName(relation.name().toLowerCase());
-        return rel;
+    private Relation(String relationName, String link) {
+        this.relationName = relationName;
+        this.link = link;
     }
 
-    public Relation forType(Class type) {
-        this.setType(type);
-        return this;
-    }
+    public static class Builder {
+        private String relationName;
+        private String link;
+        private Class<?> type;
+        private String path;
 
-    public Relation path(String path) {
-        this.setPath(path);
-        return this;
-    }
+        public Builder with(Enum<?> relation) {
+            this.relationName = relation.name().toLowerCase();
+            return this;
+        }
 
-    public Relation link(String link) {
-        this.setLink(link);
-        return this;
-    }
+        public Builder forType(Class<?> type) {
+            this.type = type;
+            return this;
+        }
 
-    public String getUrl(Map<Class, String> map) {
-        return map.get(this.type) + this.getPath();
-    }
+        public Builder path(String path) {
+            this.path = path;
+            return this;
+        }
 
-    public String getUrl() {
-        return this.link;
+        public Builder link(String link) {
+            this.link = link;
+            return this;
+        }
+
+        public Relation build() {
+            if (link == null || "".equals(link)) {
+                if (type == null || path == null) {
+                    throw new IllegalArgumentException("Missing value to create Relation, either link value is set, or both type and path");
+                }
+
+                String link = String.format("{%s}%s", type.getName(), path);
+                return new Relation(relationName, link);
+            } else {
+                return new Relation(relationName, link);
+            }
+        }
     }
 }
