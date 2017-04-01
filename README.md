@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.14')
+compile('no.fint:fint-relation-model:0.0.15')
 ```
 
 ## Usage
@@ -36,6 +36,11 @@ public class TestDto implements FintModel {
     @Override
     public void addRelasjon(Relation relasjon) {
         relasjoner.add(relasjon);
+    }
+    
+    @Override
+    public String getId() {
+        ...
     }
 }
 ```
