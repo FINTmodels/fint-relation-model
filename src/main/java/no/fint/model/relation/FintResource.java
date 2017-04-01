@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Data
-public class FintResource<T> {
+public class FintResource<T extends Identifiable> {
     private T resource;
     private List<Relation> relasjoner;
 
@@ -30,7 +30,7 @@ public class FintResource<T> {
         return this;
     }
 
-    public static <T> FintResource<T> with(T model) {
+    public static <T extends Identifiable> FintResource<T> with(T model) {
         return new FintResource<>(model);
     }
 }
