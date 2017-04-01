@@ -1,7 +1,9 @@
 package no.fint.model.relation;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Relation {
     @Getter
     private String relationName;
@@ -18,6 +20,8 @@ public class Relation {
         private String link;
         private Class<?> type;
         private String path;
+        private String field;
+        private String value;
 
         public Builder with(Enum<?> relation) {
             this.relationName = relation.name().toLowerCase();
@@ -34,6 +38,16 @@ public class Relation {
             return this;
         }
 
+        public Builder field(String field) {
+            this.field = field;
+            return this;
+        }
+
+        public Builder value(String value) {
+            this.value = value;
+            return this;
+        }
+
         public Builder link(String link) {
             this.link = link;
             return this;
@@ -41,11 +55,16 @@ public class Relation {
 
         public Relation build() {
             if (link == null || "".equals(link)) {
-                if (type == null || path == null) {
-                    throw new IllegalArgumentException("Missing value to create Relation, either link value is set, or both type and path");
+                if (type == null || path == null || value == null) {
+                    throw new IllegalArgumentException("Missing value to create Relation, either link value is set, or type, path, field and value");
                 }
 
-                String link = String.format("{%s}%s", type.getName(), path);
+                String link;
+                if(field == null) {
+                    link = String.format("{%s}%s/%s", type.getName(), path, value);
+                } else {
+                    link = String.format("{%s}%s/%s/%s", type.getName(), path, field, value);
+                }
                 return new Relation(relationName, link);
             } else {
                 return new Relation(relationName, link);

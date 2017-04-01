@@ -9,18 +9,18 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.15')
+compile('no.fint:fint-relation-model:0.0.16')
 ```
 
 ## Usage
 
 **Create a new Relation**
 ```java
-new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class).path("/test").build();
+new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class).path("/test").field("test-field").value("123").build();
 ```
 or
 ```java
-new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test").build();
+new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class).path("/test").value("123").build();
 ```
 
 **FintModel**
