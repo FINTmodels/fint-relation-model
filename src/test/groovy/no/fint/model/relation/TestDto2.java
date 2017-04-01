@@ -13,4 +13,9 @@ public class TestDto2 implements FintModel {
     public void addRelasjon(Relation relasjon) {
         relasjoner.add(relasjon);
     }
+
+    @Override
+    public String getId() {
+        return "id";
+    }
 }
