@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.16')
+compile('no.fint:fint-relation-model:0.0.17')
 ```
 
 ## Usage
@@ -27,6 +27,7 @@ new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class
 ```java
 @Data
 public class TestDto implements FintModel {
+    @Setter
     private List<Relation> relasjoner;
 
     public enum Relasjonsnavn {
