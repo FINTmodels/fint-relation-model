@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data
 public class TestDto2 implements FintModel {
-    @Setter
     private List<Relation> relasjoner = new ArrayList<>();
 
     @Override

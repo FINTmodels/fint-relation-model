@@ -27,7 +27,6 @@ new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class
 ```java
 @Data
 public class TestDto implements FintModel {
-    @Setter
     private List<Relation> relasjoner;
 
     public enum Relasjonsnavn {
