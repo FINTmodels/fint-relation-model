@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.18')
+compile('no.fint:fint-relation-model:0.0.19')
 ```
 
 ## Usage
@@ -23,24 +23,6 @@ or
 new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class).path("/test").value("123").build();
 ```
 
-**FintModel**
+**FintResource**
 ```java
-@Data
-public class TestDto implements FintModel {
-    private List<Relation> relasjoner;
-
-    public enum Relasjonsnavn {
-        TESTREL
-    }
-    
-    @Override
-    public void addRelasjon(Relation relasjon) {
-        relasjoner.add(relasjon);
-    }
-    
-    @Override
-    public String getId() {
-        ...
-    }
-}
 ```

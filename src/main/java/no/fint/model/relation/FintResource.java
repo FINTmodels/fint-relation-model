@@ -1,5 +1,6 @@
 package no.fint.model.relation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Data
-public class FintResource<T extends Identifiable> {
+public class FintResource<T> {
     private T resource;
     private List<Relation> relasjoner;
 
@@ -30,7 +31,16 @@ public class FintResource<T extends Identifiable> {
         return this;
     }
 
-    public static <T extends Identifiable> FintResource<T> with(T model) {
+    @JsonIgnore
+    public String getId() {
+        if(resource instanceof Identifiable) {
+            return ((Identifiable)resource).getId();
+        } else {
+            return "";
+        }
+    }
+
+    public static <T> FintResource<T> with(T model) {
         return new FintResource<>(model);
     }
 }
