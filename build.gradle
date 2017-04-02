@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'no.fint.relation'
-version '0.0.20'
+version '0.0.21-SNAPSHOT'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
