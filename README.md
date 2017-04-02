@@ -9,7 +9,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.19')
+compile('no.fint:fint-relation-model:0.0.20')
 ```
 
 ## Usage
@@ -25,4 +25,5 @@ new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class
 
 **FintResource**
 ```java
+FintResource.with(testDto).addRelasjoner(relation);
 ```
