@@ -34,6 +34,7 @@ javadoc {
     source = sourceSets.main.allJava
     classpath = configurations.compile
     options.windowTitle = "FINT Relation Model"
+    destinationDir = file("./javadocs/")
 }
 
 task wrapper(type: Wrapper) {
