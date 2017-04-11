@@ -54,7 +54,8 @@ class FintResourceSpec extends Specification {
         def id = fintResource.getId()
 
         then:
-        id == 'id'
+        id.isPresent()
+        id.get() == 'id'
     }
 
     def "Get id, LinkedHashMap resource type"() {
@@ -67,7 +68,8 @@ class FintResourceSpec extends Specification {
         def id = fintResource.getId()
 
         then:
-        id == 'id'
+        id.isPresent()
+        id.get() == 'id'
     }
 
     def "Get id, value is not of Identifiable"() {
@@ -78,6 +80,6 @@ class FintResourceSpec extends Specification {
         def id = fintResource.getId()
 
         then:
-        id == ''
+        !id.isPresent()
     }
 }

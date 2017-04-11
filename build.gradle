@@ -1,9 +1,9 @@
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id "com.jfrog.bintray" version "1.7.3"
 }
 
 group 'no.fint.relation'
-version '0.0.21-SNAPSHOT'
+version '0.0.21'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
@@ -22,7 +22,7 @@ repositories {
     mavenCentral()
 }
 
-apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.2/dependencies.gradle'
+apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.4/dependencies.gradle'
 dependencies {
     compile("org.projectlombok:lombok:${lombokVersion}")
     compile('com.fasterxml.jackson.core:jackson-annotations:2.8.0')
@@ -42,5 +42,5 @@ task wrapper(type: Wrapper) {
 }
 
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
-    apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.2/bintray.gradle'
+    apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.4/bintray.gradle'
 }

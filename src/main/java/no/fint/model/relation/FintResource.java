@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 @Data
 public class FintResource<T> {
@@ -55,7 +52,7 @@ public class FintResource<T> {
     }
 
     @JsonIgnore
-    public String getId() {
+    public Optional<String> getId() {
         final Object value;
         if (resource instanceof LinkedHashMap) {
             value = objectMapper.convertValue(resource, type);
@@ -64,9 +61,10 @@ public class FintResource<T> {
         }
 
         if (value instanceof Identifiable) {
-            return ((Identifiable) value).getId();
+            String id = ((Identifiable) value).getId();
+            return Optional.ofNullable(id);
         } else {
-            return "";
+            return Optional.empty();
         }
     }
 
