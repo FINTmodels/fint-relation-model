@@ -18,7 +18,7 @@ compile('no.fint:fint-relation-model:0.0.22')
 
 ## Usage
 
-**Create a new Relation**
+**Create a new Relation**  
 With type, field and value
 ```java
 new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto.class).field("test-field").value("123").build();
