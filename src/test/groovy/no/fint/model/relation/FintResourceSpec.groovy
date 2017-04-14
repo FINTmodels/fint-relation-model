@@ -24,7 +24,7 @@ class FintResourceSpec extends Specification {
 
     def "Get converted resource, TestDto resource type"() {
         given:
-        def fintResource = FintResource.with(testDto).addRelasjoner(relation)
+        def fintResource = FintResource.with(testDto).addRelasjoner([relation])
 
         when:
         def resource = fintResource.getConvertedResource()

@@ -19,7 +19,6 @@ public class Relation {
         private String relationName;
         private String link;
         private Class<?> type;
-        private String path;
         private String field;
         private String value;
 
@@ -30,11 +29,6 @@ public class Relation {
 
         public Builder forType(Class<?> type) {
             this.type = type;
-            return this;
-        }
-
-        public Builder path(String path) {
-            this.path = path;
             return this;
         }
 
@@ -55,15 +49,15 @@ public class Relation {
 
         public Relation build() {
             if (link == null || "".equals(link)) {
-                if (type == null || path == null || value == null) {
-                    throw new IllegalArgumentException("Missing value to create Relation, either link value is set, or type, path, field and value");
+                if (type == null || value == null) {
+                    throw new IllegalArgumentException("Missing value to create Relation, either link value is set, or type, field and value");
                 }
 
                 String link;
-                if(field == null) {
-                    link = String.format("{%s}%s/%s", type.getName(), path, value);
+                if (field == null) {
+                    link = String.format("${%s}/%s", type.getName(), value);
                 } else {
-                    link = String.format("{%s}%s/%s/%s", type.getName(), path, field, value);
+                    link = String.format("${%s}/%s/%s", type.getName(), field, value);
                 }
                 return new Relation(relationName, link);
             } else {

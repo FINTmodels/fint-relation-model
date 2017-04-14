@@ -41,6 +41,11 @@ public class FintResource<T> {
         return this;
     }
 
+    public FintResource<T> addRelasjoner(List<Relation> relations) {
+        this.relasjoner.addAll(relations);
+        return this;
+    }
+
     @JsonIgnore
     @SuppressWarnings("unchecked")
     public T getConvertedResource() {
