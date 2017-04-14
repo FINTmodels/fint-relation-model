@@ -31,11 +31,6 @@ public class FintResource<T> {
         return this;
     }
 
-    public FintResource<T> addRelasjon(Relation relation) {
-        this.relasjoner.add(relation);
-        return this;
-    }
-
     public FintResource<T> addRelasjoner(Relation... relation) {
         this.relasjoner.addAll(Arrays.asList(relation));
         return this;

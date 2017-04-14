@@ -14,10 +14,11 @@ class FintResourceSpec extends Specification {
 
     def "Create new FintResource"() {
         when:
-        def fintResource = FintResource.with(testDto).addRelasjoner(relation)
+        def fintResource = FintResource.with(testDto).selfField('id').addRelasjoner(relation)
 
         then:
         fintResource.resource == testDto
+        fintResource.selfField == 'id'
         fintResource.relasjoner.size() == 1
         fintResource.relasjoner[0] == relation
     }
