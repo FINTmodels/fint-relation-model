@@ -32,7 +32,7 @@ or with link
 ```java
 new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test").build();
 ```
-
+----
 **FintResource**
 ```java
 FintResource.with(testDto).addRelasjoner(relation);
