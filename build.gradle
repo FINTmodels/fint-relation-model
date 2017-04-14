@@ -13,7 +13,7 @@ targetCompatibility = 1.8
 
 jar {
     baseName = 'fint-relation-model'
-    version = '0.0.22-SNAPSHOT'
+    version = '0.0.22'
 }
 
 repositories {
@@ -33,8 +33,8 @@ dependencies {
 javadoc {
     source = sourceSets.main.allJava
     classpath = configurations.compile
-    options.windowTitle = "FINT Relation Model"
-    destinationDir = file("./javadocs/")
+    options.windowTitle = 'FINT Relation Model'
+    destinationDir = file('./javadocs/')
 }
 
 task wrapper(type: Wrapper) {
