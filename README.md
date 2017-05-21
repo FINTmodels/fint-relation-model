@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/FINTmodels/fint-relation-model.svg?branch=master)](https://travis-ci.org/FINTmodels/fint-relation-model) 
 [![Coverage Status](https://coveralls.io/repos/github/FINTmodels/fint-relation-model/badge.svg?branch=master)](https://coveralls.io/github/FINTmodels/fint-relation-model?branch=master) 
-[![FINT javadocs](https://img.shields.io/badge/FINT-javadocs-blue.svg)](https://javadocs.felleskomponent.no/docs/fint-relation-model/)
+[![FINT javadocs](https://img.shields.io/badge/FINT-javadocs-blue.svg)](https://docs.felleskomponent.no/docs/fint-relation-model/)
 
 ## Installation
 
