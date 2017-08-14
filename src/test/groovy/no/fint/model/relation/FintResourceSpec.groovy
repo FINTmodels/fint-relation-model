@@ -11,7 +11,7 @@ class FintResourceSpec extends Specification {
         testDto = new TestDto()
     }
 
-    def "Create new FintResource"() {
+    def "Create new FintResource with single relation"() {
         when:
         def fintResource = FintResource.with(testDto).addRelations(relation)
 
@@ -20,5 +20,17 @@ class FintResourceSpec extends Specification {
         fintResource.resource == testDto
         fintResource.relations.size() == 1
         fintResource.relations[0] == relation
+    }
+
+    def "Create new FintResource with relation list"() {
+        when:
+        def fintResource = FintResource.with(testDto).addRelations([relation, relation])
+
+        then:
+        fintResource.type == 'testdto'
+        fintResource.resource == testDto
+        fintResource.relations.size() == 2
+        fintResource.relations[0] == relation
+        fintResource.relations[1] == relation
     }
 }
