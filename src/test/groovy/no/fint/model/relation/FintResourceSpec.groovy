@@ -1,6 +1,5 @@
 package no.fint.model.relation
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
 
 class FintResourceSpec extends Specification {
@@ -14,73 +13,12 @@ class FintResourceSpec extends Specification {
 
     def "Create new FintResource"() {
         when:
-        def fintResource = FintResource.with(testDto).selfField('id').addRelasjoner(relation)
+        def fintResource = FintResource.with(testDto).addRelations(relation)
 
         then:
+        fintResource.type == 'testdto'
         fintResource.resource == testDto
-        fintResource.selfField == 'id'
-        fintResource.relasjoner.size() == 1
-        fintResource.relasjoner[0] == relation
-    }
-
-    def "Get converted resource, TestDto resource type"() {
-        given:
-        def fintResource = FintResource.with(testDto).addRelasjoner([relation])
-
-        when:
-        def resource = fintResource.getConvertedResource()
-
-        then:
-        resource.id == 'id'
-    }
-
-    def "Get converted resource, LinkedHashMap resource type"() {
-        given:
-        def json = new ObjectMapper().writeValueAsString(new TestDto())
-        def map = new ObjectMapper().readValue(json, LinkedHashMap)
-        def fintResource = new FintResource(resource: map, type: TestDto)
-
-        when:
-        def resource = fintResource.getConvertedResource()
-
-        then:
-        resource.id == 'id'
-    }
-
-    def "Get id, TestDto resource type"() {
-        given:
-        def fintResource = FintResource.with(testDto).addRelasjoner(relation)
-
-        when:
-        def id = fintResource.getId()
-
-        then:
-        id.isPresent()
-        id.get() == 'id'
-    }
-
-    def "Get id, LinkedHashMap resource type"() {
-        given:
-        def json = new ObjectMapper().writeValueAsString(new TestDto())
-        def map = new ObjectMapper().readValue(json, LinkedHashMap)
-        def fintResource = new FintResource(resource: map, type: TestDto)
-
-        when:
-        def id = fintResource.getId()
-
-        then:
-        id.isPresent()
-        id.get() == 'id'
-    }
-
-    def "Get id, value is not of Identifiable"() {
-        given:
-        def fintResource = new FintResource(resource: '', type: TestDto)
-
-        when:
-        def id = fintResource.getId()
-
-        then:
-        !id.isPresent()
+        fintResource.relations.size() == 1
+        fintResource.relations[0] == relation
     }
 }

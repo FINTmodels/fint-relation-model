@@ -13,7 +13,7 @@ repositories {
     }
 }
 
-compile('no.fint:fint-relation-model:0.0.22')
+compile('no.fint:fint-relation-model:1.0.0')
 ```
 
 ## Usage
@@ -35,5 +35,5 @@ new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).link("http://localhos
 ----
 **FintResource**
 ```java
-FintResource.with(testDto).addRelasjoner(relation);
+FintResource.with(testDto).addRelations(relation);
 ```

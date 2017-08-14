@@ -1,71 +1,35 @@
 package no.fint.model.relation;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Data
 public class FintResource<T> {
     private T resource;
-    private Class<?> type;
-    private String selfField;
-    private List<Relation> relasjoner;
-
-    @JsonIgnore
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private String type;
+    private List<Relation> relations;
 
     public FintResource() {
-        this.relasjoner = new ArrayList<>();
+        this.relations = new ArrayList<>();
     }
 
     public FintResource(Class<?> type, T resource) {
-        this.type = type;
+        this.type = type.getSimpleName().toLowerCase();
         this.resource = resource;
-        this.relasjoner = new ArrayList<>();
+        this.relations = new ArrayList<>();
     }
 
-    public FintResource<T> selfField(String selfField) {
-        this.selfField = selfField;
+    public FintResource<T> addRelations(Relation... relation) {
+        this.relations.addAll(Arrays.asList(relation));
         return this;
     }
 
-    public FintResource<T> addRelasjoner(Relation... relation) {
-        this.relasjoner.addAll(Arrays.asList(relation));
+    public FintResource<T> addRelations(List<Relation> relations) {
+        this.relations.addAll(relations);
         return this;
-    }
-
-    public FintResource<T> addRelasjoner(List<Relation> relations) {
-        this.relasjoner.addAll(relations);
-        return this;
-    }
-
-    @JsonIgnore
-    @SuppressWarnings("unchecked")
-    public T getConvertedResource() {
-        if (resource instanceof LinkedHashMap) {
-            return (T) objectMapper.convertValue(resource, type);
-        } else {
-            return resource;
-        }
-    }
-
-    @JsonIgnore
-    public Optional<String> getId() {
-        final Object value;
-        if (resource instanceof LinkedHashMap) {
-            value = objectMapper.convertValue(resource, type);
-        } else {
-            value = resource;
-        }
-
-        if (value instanceof Identifiable) {
-            String id = ((Identifiable) value).getId();
-            return Optional.ofNullable(id);
-        } else {
-            return Optional.empty();
-        }
     }
 
     public static <T> FintResource<T> with(T model) {

@@ -55,14 +55,18 @@ public class Relation {
 
                 String link;
                 if (field == null) {
-                    link = String.format("${%s}/%s", type.getName(), value);
+                    link = String.format("${%s}/%s", getTypeString(type), value);
                 } else {
-                    link = String.format("${%s}/%s/%s", type.getName(), field, value);
+                    link = String.format("${%s}/%s/%s", getTypeString(type), field, value);
                 }
                 return new Relation(relationName, link);
             } else {
                 return new Relation(relationName, link);
             }
+        }
+
+        private String getTypeString(Class<?> clazz) {
+            return clazz.getSimpleName().toLowerCase();
         }
     }
 }
