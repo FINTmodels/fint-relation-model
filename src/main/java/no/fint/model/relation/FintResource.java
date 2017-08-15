@@ -1,11 +1,13 @@
 package no.fint.model.relation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class FintResource<T> {
     private T resource;

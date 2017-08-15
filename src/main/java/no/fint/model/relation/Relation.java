@@ -1,8 +1,10 @@
 package no.fint.model.relation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class Relation {
     @Getter
