@@ -35,7 +35,12 @@ public class FintResource<T> {
     }
 
     public static String createType(Class<?> type) {
-        String name = type.getName().toLowerCase();
+        return FintResource.createType(type.getName());
+    }
+
+    public static String createType(String type) {
+        String name = type.toLowerCase();
         return name.replace("no.fint.model.", "");
+
     }
 }
