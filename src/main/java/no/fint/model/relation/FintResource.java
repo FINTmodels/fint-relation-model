@@ -19,8 +19,7 @@ public class FintResource<T> {
     }
 
     public FintResource(Class<?> type, T resource) {
-        String name = type.getName().toLowerCase();
-        this.type = name.replace("no.fint.model.", "");
+        this.type = FintResource.createType(type);
         this.resource = resource;
         this.relations = new ArrayList<>();
     }
@@ -37,5 +36,10 @@ public class FintResource<T> {
 
     public static <T> FintResource<T> with(T model) {
         return new FintResource<>(model.getClass(), model);
+    }
+
+    public static String createType(Class<?> type) {
+        String name = type.getName().toLowerCase();
+        return name.replace("no.fint.model.", "");
     }
 }
