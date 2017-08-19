@@ -18,6 +18,9 @@ compile('no.fint:fint-relation-model:1.0.2')
 
 ## Usage
 
+
+### Relation
+
 **Create a new Relation**  
 
 With type, field and value
@@ -33,7 +36,9 @@ or with link
 new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).link("http://localhost/test").build();
 ```
 ----
-**FintResource**
+
+### FintResource
+
 ```java
 FintResource.with(testDto).addRelations(relation);
 ```
