@@ -12,11 +12,7 @@ import java.util.List;
 public class FintResource<T> {
     private T resource;
     private String type;
-    private List<Relation> relations;
-
-    public FintResource() {
-        this.relations = new ArrayList<>();
-    }
+    private List<Relation> relations = new ArrayList<>();
 
     public FintResource(Class<?> type, T resource) {
         this.type = FintResource.createType(type);
