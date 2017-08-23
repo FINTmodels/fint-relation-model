@@ -1,5 +1,6 @@
 package no.fint.model.relation
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
 
 class RelationSpec extends Specification {
@@ -37,5 +38,18 @@ class RelationSpec extends Specification {
 
         then:
         thrown(IllegalArgumentException)
+    }
+
+    def "Serialize and deserialize Relation to JSON"() {
+        given:
+        def objectMapper = new ObjectMapper()
+        def relation = new Relation.Builder().with(TestDto.Relasjonsnavn.TESTREL).forType(TestDto2).value('123').build()
+
+        when:
+        def json = objectMapper.writeValueAsString(relation)
+        def result = objectMapper.readValue(json, Relation)
+
+        then:
+        relation == result
     }
 }

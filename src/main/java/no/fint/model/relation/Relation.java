@@ -1,11 +1,13 @@
 package no.fint.model.relation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Relation {
     @Getter
     private String relationName;

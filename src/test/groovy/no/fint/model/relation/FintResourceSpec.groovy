@@ -1,5 +1,6 @@
 package no.fint.model.relation
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Specification
 
 class FintResourceSpec extends Specification {
@@ -40,5 +41,18 @@ class FintResourceSpec extends Specification {
 
         then:
         resource.type == 'java.lang.string'
+    }
+
+    def "Serialize and deserialize FintResource to JSON"() {
+        given:
+        def objectMapper = new ObjectMapper()
+        def fintResource = FintResource.with('test')
+
+        when:
+        def json = objectMapper.writeValueAsString(fintResource)
+        def result = objectMapper.readValue(json, FintResource)
+
+        then:
+        fintResource == result
     }
 }
