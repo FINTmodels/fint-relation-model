@@ -40,6 +40,22 @@ class RelationSpec extends Specification {
         thrown(IllegalArgumentException)
     }
 
+    def "Create type with a FINT package structure"() {
+        when:
+        def type = Relation.createType('no.fint.model.test.TestDto')
+
+        then:
+        type == 'test.testdto'
+    }
+
+    def "Create type with a non FINT package structure"() {
+        when:
+        def type = Relation.createType(String.name)
+
+        then:
+        type == 'java.lang.string'
+    }
+
     def "Serialize and deserialize Relation to JSON"() {
         given:
         def objectMapper = new ObjectMapper()
