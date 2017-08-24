@@ -11,7 +11,7 @@ class RelationSpec extends Specification {
 
         then:
         relation.relationName == 'testrel'
-        relation.link == '${testdto2}/test-field/123'
+        relation.link == '${relation.testdto2}/test-field/123'
     }
 
     def "Create relation with base url, path and value"() {
@@ -20,7 +20,7 @@ class RelationSpec extends Specification {
 
         then:
         relation.relationName == 'testrel'
-        relation.link == '${testdto2}/123'
+        relation.link == '${relation.testdto2}/123'
     }
 
     def "Create relation with link"() {

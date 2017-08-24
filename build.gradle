@@ -13,7 +13,7 @@ sourceCompatibility = 1.8
 
 jar {
     baseName = 'fint-relation-model'
-    version = '1.0.6'
+    version = '1.0.7'
 }
 
 repositories {

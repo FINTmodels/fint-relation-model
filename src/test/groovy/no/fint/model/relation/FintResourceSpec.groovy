@@ -17,7 +17,6 @@ class FintResourceSpec extends Specification {
         def fintResource = FintResource.with(testDto).addRelations(relation)
 
         then:
-        fintResource.type == 'relation.testdto'
         fintResource.resource == testDto
         fintResource.relations.size() == 1
         fintResource.relations[0] == relation
@@ -28,19 +27,26 @@ class FintResourceSpec extends Specification {
         def fintResource = FintResource.with(testDto).addRelations([relation, relation])
 
         then:
-        fintResource.type == 'relation.testdto'
         fintResource.resource == testDto
         fintResource.relations.size() == 2
         fintResource.relations[0] == relation
         fintResource.relations[1] == relation
     }
 
-    def "Create new FintResource with a non FINT package structure"() {
+    def "Create type with a FINT package structure"() {
         when:
-        def resource = FintResource.with('test')
+        def type = Relation.createType('no.fint.model.test.TestDto')
 
         then:
-        resource.type == 'java.lang.string'
+        type == 'test.testdto'
+    }
+
+    def "Create type with a non FINT package structure"() {
+        when:
+        def type = Relation.createType(String.name)
+
+        then:
+        type == 'java.lang.string'
     }
 
     def "Serialize and deserialize FintResource to JSON"() {

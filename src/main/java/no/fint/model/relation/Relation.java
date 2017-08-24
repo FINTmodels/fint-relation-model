@@ -59,18 +59,23 @@ public class Relation {
 
                 String link;
                 if (field == null) {
-                    link = String.format("${%s}/%s", getTypeString(type), value);
+                    link = String.format("${%s}/%s", Relation.createType(type), value);
                 } else {
-                    link = String.format("${%s}/%s/%s", getTypeString(type), field, value);
+                    link = String.format("${%s}/%s/%s", Relation.createType(type), field, value);
                 }
                 return new Relation(relationName, link);
             } else {
                 return new Relation(relationName, link);
             }
         }
+    }
 
-        private String getTypeString(Class<?> clazz) {
-            return clazz.getSimpleName().toLowerCase();
-        }
+    public static String createType(Class<?> type) {
+        return Relation.createType(type.getName());
+    }
+
+    public static String createType(String type) {
+        String name = type.toLowerCase();
+        return name.replace("no.fint.model.", "");
     }
 }

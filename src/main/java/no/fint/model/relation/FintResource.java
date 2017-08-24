@@ -13,11 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 public class FintResource<T> {
     private T resource;
-    private String type;
     private List<Relation> relations = new ArrayList<>();
 
-    public FintResource(Class<?> type, T resource) {
-        this.type = FintResource.createType(type);
+    public FintResource(T resource) {
         this.resource = resource;
         this.relations = new ArrayList<>();
     }
@@ -33,16 +31,7 @@ public class FintResource<T> {
     }
 
     public static <T> FintResource<T> with(T model) {
-        return new FintResource<>(model.getClass(), model);
+        return new FintResource<>(model);
     }
 
-    public static String createType(Class<?> type) {
-        return FintResource.createType(type.getName());
-    }
-
-    public static String createType(String type) {
-        String name = type.toLowerCase();
-        return name.replace("no.fint.model.", "");
-
-    }
 }
