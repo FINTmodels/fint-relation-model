@@ -1,7 +1,8 @@
-.gradle
-.idea
-build
+/.gradle/
+/.idea/
+/build/
 classes
 out
 .DS_Store
 *.iml
+/.vscode/
