@@ -33,7 +33,6 @@ repositories {
 
 apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.14/dependencies.gradle'
 dependencies {
-    compile('no.fint:fint-model-core:0.0.1-1')
     compile("org.projectlombok:lombok:${lombokVersion}")
     compile('com.fasterxml.jackson.core:jackson-annotations:2.8.8')
     compile('com.fasterxml.jackson.core:jackson-databind:2.8.8')
