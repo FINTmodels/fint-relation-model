@@ -11,14 +11,6 @@ apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 
-def versionFile = new File("version.txt")
-if (versionFile.exists()) {
-    version = versionFile.text.replaceAll("\\s","")
-} else {
-    version = '0.0.0-SNAPSHOT'
-}
-
-
 jar {
     baseName = 'fint-relation-model'
 }
@@ -31,7 +23,7 @@ repositories {
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.14/dependencies.gradle'
+apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.2.0/dependencies.gradle'
 dependencies {
     compile("org.projectlombok:lombok:${lombokVersion}")
     compile('com.fasterxml.jackson.core:jackson-annotations:2.8.8')
@@ -65,5 +57,5 @@ jacocoTestReport {
 }
 
 if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
-    apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.0.14/bintray.gradle'
+    apply from: 'https://raw.githubusercontent.com/FINTlibs/fint-buildscripts/v1.2.0/bintray.gradle'
 }
