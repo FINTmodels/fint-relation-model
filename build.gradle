@@ -11,10 +11,6 @@ apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 
-jar {
-    baseName = 'fint-relation-model'
-}
-
 repositories {
     mavenLocal()
     jcenter()
